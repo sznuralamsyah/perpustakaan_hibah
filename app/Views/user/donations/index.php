@@ -12,6 +12,7 @@
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDonationModal">
                         Tambah Donasi Baru
                     </button>
+                    <a href="<?= base_url('templates/SampleHibah.xlsx') ?>" class="btn btn-success">Download</a>
                     <form action="/user/donations/import" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="excel_file">Upload Excel File</label>

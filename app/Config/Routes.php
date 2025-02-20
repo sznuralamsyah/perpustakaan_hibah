@@ -54,4 +54,6 @@ $routes->group('user', ['filter' => 'user'], function ($routes) {
     $routes->post('donations/import', 'DonationsController::importData');
 
     $routes->get('tracking-status', 'TrackingStatusController::index');
+
+    $routes->get('download/(:any)', 'DownloadController::download/$1');
 });

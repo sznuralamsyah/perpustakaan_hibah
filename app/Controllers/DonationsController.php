@@ -130,11 +130,18 @@ class DonationsController extends BaseController
             $bookPhoto->move('uploads/books', $newName);
 
             if ($donation['book_photo']) {
-                unlink('uploads/books/' . $donation['book_photo']);
+                if(!empty($donation['book_photo']) && file_exists('uploads/books' . $donation['book_photo']) ){
+                    unlink('uploads/books/' . $donation['book_photo']);
+                }else{
+
+                }
             }
         } else {
-            $newName = $donation['book_photo'];
+            // $newName = $donation['book_photo'];
+            $newName = !empty($donation['book_photo']) ? $donation['book_photo'] : null;
         }
+
+        // oke bntar, sy cek dulu disini
 
         $data = [
             'name'             => $this->request->getPost('name'),
@@ -281,5 +288,20 @@ class DonationsController extends BaseController
         $donationModel->insertBatch($data);
 
         return redirect()->to('/user/donations')->with('success', 'Data berhasil diimpor!');
+    }
+    
+    public function download($filename)
+    {
+        $filepath = FCPATH . 'templates/' . $filename;
+
+        if (file_exists($filepath)) {
+            return $this->response
+                ->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                ->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+                ->setHeader('Content-Length', filesize($filepath))
+                ->setBody(file_get_contents($filepath));
+        } else {
+            return redirect()->to('/')->with('error', 'File tidak ditemukan.');
+        }
     }
 }

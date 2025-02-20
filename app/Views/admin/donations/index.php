@@ -242,7 +242,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>ID:</strong> <span id="view_donation_id"></span></p>
+                <p class="d-none"><strong>ID:</strong> <span id="view_donation_id"></span></p>
                 <p><strong>Nama:</strong> <span id="view_name"></span></p>
                 <p><strong>Institusi:</strong> <span id="view_institution"></span></p>
                 <p><strong>Alamat:</strong> <span id="view_address"></span></p>
